@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- ... (2. 인스턴스로 인해 Vue의 기능과 속성이 유효해짐) -->
+    </div>
+
+    <!-- 개발자 도구를 위한 링크 태그 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app", // 1. new Vue로 만든 인스턴스 안에 el를 꼭 특정 태그에 붙여줘야만 Vue를 사용o
+        data: {
+          age: 21, // 3. el가 없다면, data를 정의해도 사용x
+        },
+      });
+
+      // 4. 왜 Vue를 생성자 함수로 찍어내는 이유(=재사용)
+      //  -기본적으로 JS에서 함수를 사용하여 인스턴스를 생성하는 방법은 생성자 함수를 사용
+      function Person(n, a) {
+        this.name = n;
+        this.age = a;
+        this.sayHello = () => `HI, ${n}`;
+      }
+
+      const AI = new Person("Aron", 30);
+      console.log(AI.sayHello()); // Hi, Aron
+    </script>
+  </body>
+</html>
