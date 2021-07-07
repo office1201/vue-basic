@@ -10,9 +10,16 @@
       <app-header></app-header>
       <app-footer></app-footer>
     </div>
+
+    <div id="app2">
+      <app-header></app-header>
+      <!-- 3. 전역, 지역의 차이: (에러코드) Unknown custom element ... -->
+      <app-footer></app-footer>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-      // 1. 컴포넌트 등록하는 코드(전역)-라이브러리의 형태 활용
+      // 1. 컴포넌트 등록하는 코드(전역)-라이브러리의 형태로 활용
       //  - Vue.component("컴포넌트-이름", "컴포넌트-내용");
       Vue.component("app-header", { template: "<h1>Header</h1>" });
 
@@ -26,6 +33,12 @@
             template: "<footer>footer</footer>",
           },
         },
+      });
+
+      // 3. 다중선언가능-단, 서비스 구현 시 이럴 필요x, 이해 돕기 위함
+      //  선언시, Root 컴포넌트 2개 생성+각각 vm1, vm2로 관리
+      new Vue({
+        el: "#app2",
       });
     </script>
   </body>
