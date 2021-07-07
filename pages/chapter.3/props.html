@@ -10,6 +10,7 @@
       <!-- 3. 할당 -->
       <!-- <app-header v-bind:프롭스-속성-이름="상위-컴포넌트-데이터-이름"></app-header> -->
       <app-header v-bind:propsdata="message"></app-header>
+      <app-content v-bind:propsdata="num"></app-content>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -21,14 +22,21 @@
         props: ["propsdata"],
       };
 
+      const appContent = {
+        template: "<div>{{ propsdata }}</div>",
+        props: ["propsdata"],
+      };
+
       new Vue({
         el: "#app",
         components: {
           "app-header": appHeader,
+          "app-content": appContent,
         },
         // 2. 데이터 정의
         data: {
           message: "hi",
+          num: 10,
         },
       });
     </script>
