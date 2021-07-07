@@ -17,6 +17,6 @@
 
 ## 🎨 스크립트
 
-<br>
-
 - git clone https://github.com/office1201/Vue-Basic.git
+
+<br>
