@@ -15,6 +15,10 @@
       <div v-else>테스트 사용자가 로그인됨</div>
       <!-- 4. v-show 활용 -->
       <div v-show="loading">로딩중...</div>
+
+      <!-- 5. v-model 활용, 👀 인풋 박스를 만들고 입력된 값을 p 태그에 출력해보기 -->
+      <input type="text" v-model="message" />
+      <p>메세지: {{ message }}</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -30,6 +34,7 @@
           uuid: "abc1234",
           name: "text-blue",
           loading: true,
+          message: "",
         },
         // 1. 데이터의 값에 따라 바뀌는 값을 적용 가능한 표현식, 추후 computed 코드 리팩토링 진행
         computed: {
