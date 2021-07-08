@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Axios</title>
+  </head>
+  <body>
+    <div id="app">
+      <button v-on:click="getData">get user</button>
+      <!-- 8. 데이터 뿌리기 -->
+      <div>{{ users }}</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      /*
+        1. axios:  Vue에서 권고하는 통신 라이브러리
+         - 예전 문서의 데이터를 바꿀 때 서버를 다녀 왔던(새로고침) 단점으로 인해 ajax 기법 등장
+         - ajax로 해당 데이터만 서버에 요청해서 업데이트 가능 + 라우터 등 SPA구현이 좀 더 쉬워짐
+
+         - 대표적 제이쿼리 ajax, 제이쿼리에 ajax를 이용. 데이터 호출 & 수정등 활용
+
+         - 여기서 주목할 점, axios
+          :뷰에서는 본래 "vue resource"라는 라이브러리가 있었음, 그러나 에반 류가 더 이상 공식 라이브러리로 지정x, 따라서 다시 해당 단체에 소속권이 넘어간 상태이며 "vue resource는 현재 공식 라이브러리x", 개발 시 "vue resource"를 기준으로 만들어진 샘플들이 있을 것이고 오래됬을 확률이 높은 것을 인지해야.
+          :axios는 Promise 기반의 통신 라이브러리 + 문서화👍
+
+        ---
+
+        (참고1) JS 비동기 처리의 패턴(진화 과정)
+        1. callback
+        2. Promise
+        3. Promise + generator
+        4. async & await
+
+        (참고2) jsonplaceholder
+         :RESTApi라고 해서, JS 데이터 요청 테스트 웹사이트
+      */
+      new Vue({
+        el: "#app",
+        // 3. axios로 요청한 데이터 담을 준비()
+        data: {
+          users: [],
+        },
+        methods: {
+          getData: function () {
+            console.log(this); // 5. 비동기 호출 전 this는 인스턴스 및 컴포넌트를 👀
+            // 6. 5번에 대한 해결책: 인스턴스를 변수에 담아서 this를 가리켜 👀
+            const vm = this; // vm === view model 약어
+            axios
+              .get("https://jsonplaceholder.typicode.com/users")
+              .then(function (response) {
+                // handle success
+                console.log(response.data);
+                console.log(this); // 5. 비동기 처리를 했을 때 자연스럽게 실행 컨텍스트가 바뀌면서 this에 대한 내용도 👀
+                // 6. 담기
+                vm.users = response.data;
+                // 4. 데이터 담기(5, 6번을 위해 작성된 코드)
+                this.users = response.data;
+              })
+              .catch(function (error) {
+                // handle error
+                console.log(error);
+              })
+              .then(function () {
+                // always executed
+              });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
+<!-- 7. 추후 ES6+ 화살표 함수를 통해, vm 대신 this로 바로 연결 가능 -->
+<!-- 9. 다음 챕터, 뷰의 기본적인 문법 + 배열 정리 및 화면 구현 방법 진행 -->
