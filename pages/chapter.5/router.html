@@ -11,10 +11,12 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script>
-      new VueRouter({});
+      // 1. 뷰 라우터 인스턴스 연결
+      const router = new VueRouter({});
 
       new Vue({
         el: "#app",
+        router: router,
       });
     </script>
   </body>
