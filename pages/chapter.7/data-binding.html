@@ -10,10 +10,18 @@
       <!-- 2. "id에 바인딩을 진행하는데, uuid를 연결할 것" -->
       <p v-bind:id="uuid" v-bind:class="name">{{ num }}</p>
       <p>{{ doubleNum }}</p>
+      <!-- 3. v-if 활용-->
+      <div v-if="loading">로딩중...</div>
+      <div v-else>테스트 사용자가 로그인됨</div>
+      <!-- 4. v-show 활용 -->
+      <div v-show="loading">로딩중...</div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
+      // 5. v-if와 v-show의 차이
+      //    : v-if false시, DOM 완전 제거
+      //    : v-show false시, display:none;(DOM의 정보는 남아있다.)
       new Vue({
         el: "#app",
         data: {
@@ -21,6 +29,7 @@
           //   2. 특정 태그의 id 또는 클래스를 데이터에 관리하는 방법
           uuid: "abc1234",
           name: "text-blue",
+          loading: true,
         },
         // 1. 데이터의 값에 따라 바뀌는 값을 적용 가능한 표현식, 추후 computed 코드 리팩토링 진행
         computed: {
