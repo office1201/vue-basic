@@ -7,7 +7,8 @@
   </head>
   <body>
     <div id="app">
-      <p>{{ num }}</p>
+      <!-- 2. "id에 바인딩을 진행하는데, uuid를 연결할 것" -->
+      <p v-bind:id="uuid" v-bind:class="name">{{ num }}</p>
       <p>{{ doubleNum }}</p>
     </div>
 
@@ -17,8 +18,11 @@
         el: "#app",
         data: {
           num: 10,
+          //   2. 특정 태그의 id 또는 클래스를 데이터에 관리하는 방법
+          uuid: "abc1234",
+          name: "text-blue",
         },
-        // 데이터의 값에 따라 바뀌는 값을 적용 가능한 표현식, 추후 computed 코드 리팩토링 진행
+        // 1. 데이터의 값에 따라 바뀌는 값을 적용 가능한 표현식, 추후 computed 코드 리팩토링 진행
         computed: {
           // 컴퓨티드: 이하 계산된 속성
           doubleNum: function () {
@@ -29,3 +33,4 @@
     </script>
   </body>
 </html>
+<!-- 설명: 기존에 쿼리셀렉터로 쫓아가서 그 안에 있는 내용들은 바꿔줘야 했던 과거와 달리 현재, Vue에서 제공하는 문법을 활용해서 편하게 데이터만 조작했을 때 값이 바뀌는 Reactivity한 경험을 할 수 o -->
