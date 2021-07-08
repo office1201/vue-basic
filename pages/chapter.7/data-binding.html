@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ num }}</p>
+      <p>{{ doubleNum }}</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          num: 10,
+        },
+        // 데이터의 값에 따라 바뀌는 값을 적용 가능한 표현식, 추후 computed 코드 리팩토링 진행
+        computed: {
+          // 컴퓨티드: 이하 계산된 속성
+          doubleNum: function () {
+            return this.num * 2;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
