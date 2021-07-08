@@ -7,6 +7,15 @@
   </head>
   <body>
     <div id="app">
+      <!-- 5. 라우터-링크를 통한 페이지 이동 -->
+      <!--  - 최종적으로 a태그로 변환 -->
+      <!--  - <a href="/login">login</a>것 과 동일 -->
+      <div>
+        <router-link to="login">login</router-link>
+        <router-link to="main">main</router-link>
+      </div>
+
+      <!-- 4. 라우터-뷰 페이지 전환 태그 -->
       <router-view></router-view>
     </div>
 
