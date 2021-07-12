@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+  <script>
+    const app = document.querySelector("#app");
+    // Vue = MVVM패턴
+    const viewModel = {};
+    //   1. 객체의 동작을 재정비하는 API
+    //   Object.defineProperty("해당객체", "객체속성", { 정의할내용 });
+    Object.defineProperty(viewModel, "str", {
+      // -속성에 접근했을 때의 동작을 정의
+      get: function () {
+        console.log("접근");
+      },
+      // -속성에 값을 할당했을 때의 동작을 정의
+      set: function (setState) {
+        app.innerHTML = setState;
+      },
+    });
+
+    // 3. 뷰의 핵심: Reactivity
+    //  -데이터 변화를 알아서 라이브러리에서 감지해 자동으로 화면 보여주는 것
+    //  -화면에 보여주는 것: 데이터바인딩
+
+    // 4. Reactivity 코드 라이브러리화
+    //  -즉시실행함수(JS문법): 라이브러리가 앱 로직에 노출되지 않게 또 다른 스코프에 넣어주는 것
+    //   -일반적 오픈소스 라이브러리들 이렇게 변수의 유효범위를 관리
+    (() => {
+      function init() {
+        const viewModel = {};
+        Object.defineProperty(viewModel, "str", {
+          get: function () {
+            console.log("접근");
+          },
+          set: function (setState) {
+            render(setState);
+          },
+        });
+        function render(value) {
+          app.innerHTML = value;
+        }
+      }
+      init();
+    })();
+  </script>
+</html>

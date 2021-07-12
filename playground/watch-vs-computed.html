@@ -21,7 +21,7 @@
             return this.num * 2;
           },
         },
-        // 2. 무거운 로직들, 매번 실행 부담스러운, watch 속성은 (이전 값, 이후 값)의 2가지 인자를 받을 수o
+        // 2. 무거운 로직들, 매번 실행 부담스러운, watch 속성은 (이후 값, 이전 값)의 2가지 인자를 받을 수o
         watch: {
           num: function (newValue, oldValue) {
             this.fetchUserByNumber(newValue);
@@ -37,6 +37,5 @@
     </script>
   </body>
 </html>
-<!-- 3. 설명: [computed: 간단한 연산], [watch: 무거운 로직들-특히, 데이터 요청 적합] -->
-
+<!-- 3. 결국: [computed: 간단한 비교 연산, 간단한 텍스트 연산, 숫자 연산], [watch: 무거운 로직들-특히, 데이터 요청 적합] -->
 <!-- 4. 결론: 공식문서참고, 왠만하면 computed를 쓰는 것 👍, watch보다 대부분의 케이스에 적합, 실제 현업에서도 watch는 코드가 너저분해지므로 문제됨. + computed가 내부적으로 캐싱 및 튜닝이 더 많이 되어있기 때문에 watch보다는 간단한 값들을 계산하는 것에 computed를 추천 -->

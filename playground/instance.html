@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>인스턴스</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- ... (2. 인스턴스로 인해 Vue의 기능과 속성이 유효해짐) -->
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    // console.log(vm), Vue 속성 및 기능 확인
+    const vm = new Vue({
+      el: "#app", // 1. new Vue로 만든 인스턴스 안에 el를 꼭 특정 태그에 붙여줘야만 Vue를 사용o
+      data: {
+        age: 21, // 3. el가 없다면, data를 정의해도 사용x
+      },
+    });
+
+    // 4. 뷰를 생성자 함수로 찍어내는 이유
+    //  -생성자함수: 함수 이용, 정보를 담은 객체를 생성하는 것 생성자 함수 패턴
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+
+    const jcob = new Person("jcob", 21);
+
+    //  -Vue라는 생성자 함수를 통해 사람들 편하게 기능•속성 쓰게끔 만드는 것에 의미
+    function Vue() {
+      this.logText = function () {
+        console.log("hello");
+      };
+    }
+
+    const vm2 = new Vue(); // vm2로 Vue 인스턴스를 갖다 쓰거나 재사용 패턴
+
+    // 5. 인스턴스 옵션 속성 및 표기법
+    //  bad👎
+    var options = {
+      el: "#app",
+      data: {
+        message: "hi",
+      },
+      methods: {},
+    };
+    const vm3 = new Vue(options);
+
+    //  good👍 - 객체리터럴
+    const vm3 = new Vue({
+      el: "#app",
+      data: {
+        message: "hi",
+      },
+      methods: {},
+      created: function () {},
+    });
+  </script>
+</html>

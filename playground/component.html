@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>컴포넌트 등록 및 실습</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 2. 인스턴스 영역 컴포넌트 등록(반영) -->
+      <app-header></app-header>
+      <app-content></app-content>
+      <app-footer></app-footer>
+    </div>
+    <div id="app2">
+      <app-header></app-header>
+      <app-content></app-content>
+      <app-footer></app-footer> // ❗️ Unknown custom element...
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    // 1. 전역 컴포넌트 등록 방식
+    // Vue.component("컴포넌트-이름", "컴포넌트-내용");
+    Vue.component("app-header", {
+      template: "<h1>header</h1>",
+    });
+    Vue.component("app-content", {
+      template: "<div>content</div>",
+    });
+
+    // 2. 지역 컴포넌트 등록 방식
+    new Vue({
+      el: "#app",
+      //   components: "컴포넌트-이름", "컴포넌트-내용"
+      components: {
+        "app-footer": {
+          template: "<p>footer</p>",
+        },
+      },
+    });
+
+    // 3. 전역 컴포넌트와 지역 컴포넌트의 차이
+    //  -전역: component || 지역: components
+
+    // 4. 다중선언가능-단, 서비스 구현 시 이럴 필요x, 이해 돕기 위함
+    //  인스턴스 생성시, Root 컴포넌트 2개 생성+각각 vm1, vm2로 관리
+    new Vue({
+      el: "#app2",
+    });
+  </script>
+</html>
