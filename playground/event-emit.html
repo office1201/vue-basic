@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>데이터 통신, 이벤트 에밋</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 2. 이벤트 에밋을 발생시켜 하위 컴포넌트와 상위 컴포넌트 간에 대화하는 방식-->
+      <!-- <app-header v-on:하위 컴포넌트에서 발생한 이벤트 이름="상위 컴포넌트의 메서드 이름"></app-header> -->
+      <app-header v-on:pass="logText"></app-header>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const appHeader = {
+      // 1. 이벤트 정의
+      template: '<h1 v-on:click="passEvent">header</h1>',
+      methods: {
+        passEvent: function () {
+          // $emit: 이벤트 전달 API
+          this.$emit("pass");
+        },
+      },
+    };
+
+    new Vue({
+      el: "#app",
+      components: {
+        "app-header": appHeader,
+      },
+      //   3. 메서드 정의
+      methods: {
+        logText: function () {
+          console.log("hi");
+        },
+      },
+    });
+  </script>
+</html>

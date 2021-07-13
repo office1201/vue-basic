@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>데이터 통신, 프롭스</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 1. 프롭스 등록 방식 -->
+      <!-- <app-header v-bind:프롭스 속성 이름="상위 컴포넌트 데이터 이름"></app-header> -->
+      <app-header v-bind:propsdata="age"></app-header>
+      <app-content v-bind:propsdata="num"></app-content>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const appHeader = {
+      template: "<h1>header</h1>", // "<h1>{{ propsdata }}</h1>"와 같이 데이터바인딩`s를 통한 Reactivity 구현
+      props: ["propsdata"],
+    };
+
+    const appContent = {
+      template: "<div>{{ propsdata }}</div>", // 2. 프롭스 실습
+      props: ["propsdata"],
+    };
+
+    new Vue({
+      el: "#app",
+      components: {
+        "app-header": appHeader,
+        "app-content": appContent,
+      },
+      data: {
+        age: 21,
+        num: 1,
+      },
+    });
+  </script>
+</html>

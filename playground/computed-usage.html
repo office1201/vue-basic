@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>computed 속성을 이용한 클래스 코드 작성법</title>
+    <style>
+      .warning {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p v-bind:class="errorTextColor">warning</p>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    //   1.  적용대상: 클래스 이름을 통한 동적 CSS 스타일링
+    new Vue({
+      el: "#app",
+      data: {
+        isError: false,
+      },
+      computed: {
+        errorTextColor: function () {
+          return this.isError ? "warning" : null;
+        },
+      },
+    });
+  </script>
+</html>

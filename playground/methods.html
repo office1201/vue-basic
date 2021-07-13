@@ -9,16 +9,19 @@
     <div id="app">
       <button v-on:click="logText">클릭</button>
       <!-- 1. 이벤트 modify(변경)으로 조작 또한 가능 -->
-      <input type="text" v-on:keyup.enter="logText" />
+      <input type="text" v-on:keyup.enter="logText" v-model="message" />
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
       new Vue({
         el: "#app",
+        data: {
+          message: "",
+        },
         methods: {
           logText: function () {
-            console.log("clicked");
+            console.log(this.message);
           },
         },
       });

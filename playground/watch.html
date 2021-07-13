@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>왓치 속성</title>
+  </head>
+  <body>
+    <div id="app">
+      <button v-on:click="addNumber">증가 버튼</button>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        num: 10,
+      },
+      //   1. watch: 데이터의 변화를 [감지]해 특정 로직을 수행하는 Vue의 속성
+      watch: {
+        num: function () {
+          this.logText();
+        },
+      },
+      methods: {
+        addNumber: function () {
+          this.num = this.num + 1;
+        },
+        logText: function () {
+          console.log("watch...!!");
+        },
+      },
+    });
+  </script>
+</html>

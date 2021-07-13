@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>같은 컴포넌트 레벨 간의 통신 방법1</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 3. 프롭스 전달 -->
+      <app-header v-bind:propsdata="num"></app-header>
+      <app-content v-on:pass="deliverNum"></app-content>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const appHeader = {
+      template: "<h1>header</h1>",
+      props: ["propsdata"],
+    };
+    // 1. 이벤트 올림
+    const appContent = {
+      template: "<div>content<button v-on:click='passNum'>pass</button></div>",
+      methods: {
+        passNum: function () {
+          this.$emit("pass", 10);
+        },
+      },
+    };
+
+    new Vue({
+      el: "#app",
+      components: {
+        "app-header": appHeader,
+        "app-content": appContent,
+      },
+      data: {
+        num: 0,
+      },
+      //   2. 데이터 업데이트
+      methods: {
+        deliverNum: function (value) {
+          this.num = value;
+        },
+      },
+    });
+  </script>
+</html>
